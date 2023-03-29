@@ -1,8 +1,15 @@
-const puppeteer = require('puppeteer');
+const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');
+
 module.exports.getTopProducts = async (event, context) => {
   const url = 'https://www.amazon.com.br/gp/bestsellers';
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
+  });
+
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: 'networkidle0' });
 
@@ -32,3 +39,4 @@ module.exports.getTopProducts = async (event, context) => {
     body: JSON.stringify(topProducts),
   };
 };
+
