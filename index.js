@@ -23,10 +23,10 @@ await page.setExtraHTTPHeaders({
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 });
 
-const response = await page.goto(url, { waitUntil: 'load', timeout: 30000 });
+const response = await page.goto(url, { waitUntil: 'load', timeout: 60000 });
 
-// espera pelo elemento 'body' estar disponível
-await page.waitForSelector('body');
+// espera pelo elemento estar disponível
+await page.waitForSelector('._cDEzb_card_1L-Yx');
 console.log("encontrado")
 
 
@@ -49,9 +49,10 @@ console.log('A página foi carregada com sucesso!');
 const products = await page.evaluate(() => {
   const products = [];
   
-  const productItems = document.querySelectorAll('body');
+  const productItems = document.querySelectorAll('.p13n-grid-content');
 
   productItems.forEach((productItem) => {
+    
     const titleItem = productItem.querySelector('._cDEzb_p13n-sc-css-line-clamp-3_g3dy1');
   
     const rankItem = productItem.querySelector('.zg-bdg-text');
@@ -74,26 +75,33 @@ const products = await page.evaluate(() => {
   return products;
   
 });
+
+
 await browser.close();
 const topProducts = products
-  .sort((a, b) => b.rank - a.rank)
-  .slice(0, 3);
-
-
-
-const data = JSON.stringify(topProducts);
-
-
-fs.writeFile('top_products.json', data, (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('Top products saved to file.');
-  }
+  .sort((a, b) => parseInt(a.rank.replace('#','')) - parseInt(b.rank.replace('#','')))
+  .slice(0, 3)
+  .map((product) => {
+  const newProduct = {};
+  newProduct.rank = product.rank;
+  newProduct.title = product.title;
+  newProduct.price = product.price;
+  newProduct.url = product.url;
+  return newProduct;
+  });
   
-});
-
-return topProducts;
+  const data = JSON.stringify(topProducts);
+  
+  fs.writeFile('top_products.json', data, (err) => {
+  if (err) {
+  console.error(err);
+  } else {
+  console.log('Top products saved to file.');
+  }
+  });
+  
+  res.send(topProducts);
+  await browser.close();
 
 });
 app.listen(3000, () => {
