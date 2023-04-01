@@ -22,6 +22,7 @@ provider:
   environment:
     CHROMIUM_PATH: "/opt/bin/chromium"
     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+
 functions:
   getTopProducts:
     handler: handler.getTopProducts
@@ -34,3 +35,12 @@ functions:
           private: false
     layers:
       - arn:aws:lambda:us-east-1:764866452798:layer:chrome-aws-lambda:21
+    package:
+      exclude:
+        - node_modules/**
+        - .git/**
+        - test/**
+        
+
+
+

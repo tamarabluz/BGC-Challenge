@@ -1,15 +1,12 @@
 {
   "dependencies": {
     "aws-sdk": "^2.1345.0",
-    
     "chromium": "^3.0.3",
     "express": "^4.18.2",
-    "puppeteer": "^19.8.2",
-    
-    "uuid": "^9.0.0"
+    "puppeteer": "^19.8.2"
   },
   "scripts": {
     "deploy": "sls deploy",
-    "start": "node index.js"
+    "start": "node handler.js"
   }
 }
