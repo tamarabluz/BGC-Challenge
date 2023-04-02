@@ -6,8 +6,6 @@ const util = require('util');
 const puppeteer = require('puppeteer');
 
 
-
-
 const region = 'sa-east-1';
 const dynamodb = new AWS.DynamoDB.DocumentClient({ region });
 
@@ -30,7 +28,7 @@ app.get('/top-products', async (req, res) => {
 
   const response = await page.goto(url, { waitUntil: 'load', timeout: 60000 });
 
-  // espera pelo elemento estar disponível
+  // Espera pelo elemento estar disponível
   await page.waitForSelector('._cDEzb_card_1L-Yx');
   console.log("encontrado");
 
@@ -115,6 +113,4 @@ await browser.close();
       
       });
       
-      app.listen(3000, () => {
-      console.log('Server started on port 3000');
-      });
+      module.exports = app;
