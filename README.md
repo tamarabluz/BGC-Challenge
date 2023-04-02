@@ -38,6 +38,7 @@
 	<td>*</td>
 </tr>
 <table>
+<tr>
 
 	<th>Tecnologias</th>
 </tr>
