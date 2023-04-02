@@ -40,7 +40,6 @@
 	
 <table>
 <tr>
-
 	<th>Tecnologias</th>
 </tr>
 <tr>
