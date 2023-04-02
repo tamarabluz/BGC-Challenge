@@ -20,7 +20,7 @@ app.get('/top-products', async (req, res) => {
     headless: true,
     slowMo: 50
   });
-
+  // Simular uma requisição feita pelo navegador para evitar que o site bloqueie o acesso da aplicação ao detectar que está sendo feito web scraping.
   const page = await browser.newPage();
   await page.setExtraHTTPHeaders({
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
@@ -28,23 +28,25 @@ app.get('/top-products', async (req, res) => {
 
   const response = await page.goto(url, { waitUntil: 'load', timeout: 60000 });
 
-  // Espera pelo elemento estar disponível
-  await page.waitForSelector('._cDEzb_card_1L-Yx');
-  console.log("encontrado");
-
-  // Salva a imagem em um arquivo no projeto
-  const imageBuffer = await page.screenshot();
-  fs.writeFile('imagem.png', imageBuffer, (err) => {
-    if (err) throw err;
-    console.log('Imagem salva com sucesso!');
-  });
-
   if (response.status() !== 200) {
     console.log('A página não foi carregada com sucesso.');
   } else {
     console.log('A página foi carregada com sucesso!');
   }
 
+  // Espera pelo elemento estar disponível
+  await page.waitForSelector('._cDEzb_card_1L-Yx');
+  console.log("encontrado");
+
+  // Salva a imagem em um arquivo no projeto para testar o puppeteer.
+  const imageBuffer = await page.screenshot();
+  fs.writeFile('imagem.png', imageBuffer, (err) => {
+    if (err) throw err;
+    console.log('Imagem salva com sucesso!');
+  });
+
+
+// Extrai informaçõs do produtos que está sendo acessada pelo puppeteer.
   const products = await page.evaluate(() => {
     const products = [];
 
@@ -75,8 +77,10 @@ app.get('/top-products', async (req, res) => {
 
   });
 
-
+// Fecha o navegador 
   await browser.close();
+
+  // Ordena os produtos com base no número de ranking top 3 melhores produtos. Cria uma nova lista de produtos, onde cada produto tem um novo ID.
   const topProducts = products
     .sort((a, b) => parseInt(a.rank.replace('#','')) - parseInt(b.rank.replace('#','')))
     .slice(0, 3)
