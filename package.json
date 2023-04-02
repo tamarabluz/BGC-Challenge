@@ -3,10 +3,11 @@
     "aws-sdk": "^2.1345.0",
     "chromium": "^3.0.3",
     "express": "^4.18.2",
-    "puppeteer": "^19.8.2"
+    "puppeteer": "^19.8.2",
+    "swagger-ui-express": "^4.6.2"
   },
   "scripts": {
     "deploy": "sls deploy",
-    "start": "node handler.js"
+    "start": "node server.js"
   }
 }

@@ -1,0 +1,74 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API BGC-Brasil",
+      "description": "Essa API tem como objetivo fazer um web scraping da página de mais vendidos da Amazon/eletronics. ",
+      "termsOfService": "http://localhost:3000/terms",
+      "contact": {
+        "email": "tamarabluz@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/v1",
+        "description": "API de test"
+      }
+    ],
+    "paths": {
+      "/top-products": {
+        "get": {
+          "description": "Busca os 3 produtos mais vendidos da sessão de eletronicos do site da Amazon.",
+          "summary": "Top 3 melhores produtos de eletronics",
+          "tags": ["Products"],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/top-products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "top-products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "ID do produto"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Rank do produto"
+              },
+              "title": {
+                "type": "string",
+                "description": "Título do produto"
+              },
+              "price": {
+                "type": "string",
+                "description": "Preço do produto"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL do produto"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
