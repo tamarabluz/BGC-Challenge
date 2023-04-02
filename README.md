@@ -1,4 +1,4 @@
-![alt text](https://logosmarcas.net/wp-content/uploads/2020/04/Amazon-Logo.png)
+![alt text](https://mundodasmarcas.blogspot.com/2006/05/amazon-livros-dot-com.html)
 
 
 
@@ -34,7 +34,7 @@
 	<td>1.76</td>
 </tr>
 	<td>Postman</td>
-	<td>v9</td>
+	<td>*</td>
 </tr>
 </table>
 
