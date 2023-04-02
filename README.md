@@ -1,4 +1,4 @@
-![alt text]([https://cdn.freebiesupply.com/logos/large/2x/amazon-dark-logo-png-transparent.png](https://portalpopline.com.br/wp-content/uploads/2020/12/4602f2f5153477027a754713438bf3d0.jpg))
+![alt text](https://portalpopline.com.br/wp-content/uploads/2020/12/4602f2f5153477027a754713438bf3d0.jpg)
 
 
 
