@@ -33,10 +33,11 @@
 	<td>VsCode</td>
 	<td>1.76</td>
 </tr>
+<tr>
 	<td>Postman</td>
 	<td>*</td>
 </tr>
-</table>
+<table>
 
 	<th>Tecnologias</th>
 </tr>
