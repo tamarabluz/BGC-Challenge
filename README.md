@@ -2,9 +2,9 @@
 
 
 
-<h1 align="center">Projeto Desenvolvido para BGC - Brasil</h1>
-<p align="center"> https://www.bgcbrasil.com.br/<p/>
-<p align="center">Repositório criado para etapa de teste backend.</p>
+<h1 align="center">Projeto Desenvolvido para backend</h1>
+
+<p align="center">Web Scraping da pagina da amazon utilizando puppeteer e lambda aws. </p>
 
 
 <h3 align="center">Status do Projeto</h3>
